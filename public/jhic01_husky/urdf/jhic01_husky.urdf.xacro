@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+   
+   <xacro:include filename="$(find fath_pivot_mount_description)/urdf/lockmount.urdf.xacro" />
+   <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+   <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />
+   
+   <!-- Setup some colours -->
+
+   <material name = "cpr_grey">
+      <color rgba = "0.2 0.2 0.2 1"/>
+   </material>
+   
+   <material name = "cpr_white">
+      <color rgba = "1.0 1.0 1.0 1"/>
+   </material>
+
+   <material name = "cpr_yellow">
+      <color rgba = "1.0 1.0 0 1"/>
+   </material>
+
+   <material name = "cpr_black">
+      <color rgba = "0.0 0.0 0.0 1"/>
+   </material>   
+   
+   <!-- Payloads Section -->
+   
+    <!-- Sensor Arch Link  -->
+   <link name="sensor_arch_link">
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <mesh filename="package://jhic01_husky/meshes/Sensor_arch.STL"/>
+         </geometry>
+         <material name="cpr_grey"/>
+      </visual>
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <mesh filename="package://jhic01_husky/meshes/Sensor_arch.STL"/>
+         </geometry>
+      </collision>
+   </link>
+   
+   <!-- Sensor Arch Joint -->
+   <joint name="sensor_arch_joint" type="fixed">
+      <parent link="top_plate_rear_link" />
+      <child link="sensor_arch_link" />
+      <origin xyz="0.29 0 0.0" rpy="0 0 ${pi}" />
+   </joint> 
+   
+   
+   <!-- Adjustable Locking Hinge Mount Xacro -->   
+   <xacro:fath_pivot_mount prefix="front_camera" parent_link="sensor_arch_link" angle="1.5708">
+      <origin xyz="-0.013 0 0.290" rpy="${pi} -1.5708 ${pi}" />
+   </xacro:fath_pivot_mount>
+   
+
+   <!-- Intel RealSense D435i Camera Xacro -->   
+   <xacro:sensor_d435 parent="front_camera_mount" name="realsense">
+      <origin xyz="0 0 0" rpy="0 0 ${pi}" />
+   </xacro:sensor_d435>
+   
+   
+   <!-- TP-Link AC2300 Router Link -->
+   <link name="router_link">
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <mesh filename="package://jhic01_husky/meshes/Router_and_100mm_standoffs.STL"/>
+         </geometry>
+         <material name="cpr_grey"/>
+      </visual>
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <mesh filename="package://jhic01_husky/meshes/Router_and_100mm_standoffs.STL"/>
+         </geometry>
+      </collision>
+   </link>
+
+   <!-- TP-Link AC2300 Router Joint -->
+   <joint name="router_joint" type="fixed">
+      <parent link="top_plate_rear_link" />
+      <child link="router_link" />
+      <origin xyz="0.115 0 0" rpy="0 0 0" />
+   </joint>
+   
+    
+   <!-- Velodyne VLP-16 Link -->   
+   <xacro:VLP-16 parent="vlp16_mount_link" topic="points">
+      <origin xyz="0 0 0.125125" rpy="0 0 ${pi}" />
+   </xacro:VLP-16>   
+   
+   <!-- Velodyne VLP16 Mount Link -->
+   <link name="vlp16_mount_link">
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <mesh filename="package://jhic01_husky/meshes/VLP16_mount.STL"/>
+         </geometry>
+         <material name="cpr_black"/>
+      </visual>
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <mesh filename="package://jhic01_husky/meshes/VLP16_mount.STL"/>
+         </geometry>
+      </collision>
+   </link>
+   
+   <!-- Velodyne VLP16 Mount Joint -->
+   <joint name="vlp16_mount_joint" type="fixed">
+      <parent link="sensor_arch_link" />
+      <child link="vlp16_mount_link" />
+      <origin xyz="0.008 0 0.30" rpy="0 0 0" />
+   </joint> 
+   
+</robot>	

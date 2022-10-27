@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>jhic01_husky</name>
+  <version>0.0.0</version>
+  <description>
+     A repository for the JHIC01 Husky project. The robot has a sensor arch, Velodyne VLP-16, Intel Realsense D435i, a TP-Link AC2300 Router, and a UM7 IMU.</description>
+  <maintainer email="code@clearpathrobotics.com">Clearpath Team</maintainer>
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+	<exec_depend>husky_bringup</exec_depend>
+	<exec_depend>husky_description</exec_depend> 
+</package>
+

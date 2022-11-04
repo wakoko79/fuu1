@@ -1,7 +1,7 @@
 import {React, Component} from 'react';
 import ROSLIB from 'roslib';
 
-import ROS3D, {Viewer,OccupancyGridClient, OccupancyGridNav, UrdfClient, Pose} from 'ros3d';
+import ROS3D, {Viewer,OccupancyGridClient, OccupancyGridClientNav, UrdfClient, Pose} from 'ros3d';
 import {Ros} from 'roslib';
 class Index extends Component{
     state={ ros: null,
@@ -44,7 +44,7 @@ class Index extends Component{
       });
   
       // Setup the map client.
-      this.gridClient = new OccupancyGridClient({
+      this.gridClient = new OccupancyGridClientNav({
         ros : this.state.ros,
         rootObject : this.viewer.scene,
         tfClient: this.tfClient,

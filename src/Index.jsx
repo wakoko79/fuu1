@@ -93,8 +93,8 @@ class Index extends Component{
     }
 
     b1Handler(e){
-      this.gridClient.currentGrid.handler.toggleActivation();
-      if (this.gridClient.currentGrid.handler.isActive){
+      this.gridClient.currentGrid.navigator.toggleActivation();
+      if (this.gridClient.currentGrid.navigator.isActive){
         e.target.textContent = 'NAV is ACTIVE';
       } else{
         e.target.textContent = 'NAV is INACTIVE';

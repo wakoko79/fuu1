@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/randel/ws3/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/randel/ws3/src/eband_local_planner/include/**",
+        "/home/randel/ws3/src/mbf_tools/moveback_recovery/include/**",
+        "/home/randel/ws3/src/pegasus_gazebo_plugins/include/**",
+        "/home/randel/ws3/src/roamer_husky/realsense_ros_gazebo/realsense-ros/realsense2_camera/include/**",
+        "/home/randel/ws3/src/roamer_husky/realsense_ros_gazebo/realsense_gazebo_plugin/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
